@@ -1,0 +1,82 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Most resources in your app probably want to be associated with
+// an Organization rather than a User. See:
+// https://blog.bullettrain.co/teams-should-be-an-mvp-feature/
+model Organization {
+  id      String       @id @default(cuid())
+  name    String
+  members Membership[]
+}
+
+model Membership {
+  id    String       @id @default(cuid())
+  org   Organization @relation(fields: [orgId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  orgId String
+
+  // user might be null when an invitation has only recently been sent out.
+  // imagine adding someone to a team. an invitation email is sent out, but has
+  // not yet been claimed. You might still want to assign work to that user, or tag
+  // them or something. For this reason, consider referencing Membership rather than User
+  // in your domain models
+  user   User?   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId String?
+
+  invitedEmail    String?
+  invitationState InvitationState @default(OUTSTANDING)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([orgId, userId])
+}
+
+enum InvitationState {
+  OUTSTANDING
+  ACCEPTED
+  REJECTED
+}
+
+model User {
+  id    String @id @default(cuid())
+  email String @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  password    Password?
+  memberships Membership[]
+  Note        Note[]
+}
+
+model Password {
+  hash String
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId String @unique
+}
+
+model Note {
+  id    String @id @default(cuid())
+  title String
+  body  String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId String
+
+  // You might actually want to associate resources with orgs instead of users,
+  // but we didn't write the UI for making new orgs, changing your active org, etc,
+  // so this is commented out
+  // org    Organization @relation(fields: [orgId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  // orgId  String
+}

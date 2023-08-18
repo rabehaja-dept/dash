@@ -1,0 +1,55 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.container.md {
+  flex-direction: row;
+}
+
+.borderContainer {
+  width: 100%;
+  order: 1;
+  flex-grow: 1;
+  padding-bottom: 64px;
+  padding-top: 64px;
+}
+
+.borderContainer.md {
+  order: 0;
+  width: 50%;
+  padding: 56px 56px 56px 0;
+}
+
+.section {
+  margin-left: auto;
+  width: 100%;
+}
+
+.backgroundContainer {
+  width: 100%;
+  border-bottom: 1px solid;
+  background-color: #f3f4f6;
+  flex-grow: 1;
+  padding: 24px;
+}
+
+.backgroundContainer.md {
+  width: 50%;
+  border-width: 0;
+  padding: 56px 0 0 40px;
+}
+
+.stickyDiv {
+  position: relative;
+}
+
+.stickyDiv.lg {
+  position: sticky;
+  top: 144px;
+}
+
+.divContainer {
+  width: 75%;
+}

@@ -1,0 +1,37 @@
+name: ▲ Vercel Preview Deploy
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+on: [pull_request]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: 💿 Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: "npm"
+          cache-dependency-path: package-lock.json
+
+      - name: 📥 Download dependencies
+        run: |
+          npm install
+
+      - name: ▲ Initiate Vercel preview
+        uses: amondnet/vercel-action@v25.1.0
+        with:
+          github-comment: "![preview](https://img.shields.io/static/v1?message=Preview%20Deployment&logo=vercel&label=Vercel&style=for-the-badge&color=success&link={{deploymentUrl}}) \n Built with commit {{deploymentCommit}}."
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}

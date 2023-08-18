@@ -1,0 +1,30 @@
+.addressBookContainer {
+  padding: 2rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-top: 2rem;
+}
+
+.addressBookHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.addressBookTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.manageAddressButton {
+  background: none;
+  border: none;
+  text-decoration: underline;
+  cursor: not-allowed;
+  font-size: 1rem;
+}
+
+.addresses {
+  display: flex;
+  justify-content: space-between;
+}

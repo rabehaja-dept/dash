@@ -1,0 +1,49 @@
+name: 🎈 Fly Deploy 💨
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+on:
+  workflow_call:
+    inputs:
+      stage:
+        required: false
+        type: string
+
+jobs:
+  deploy:
+    name: 🎈 Deploy app
+    runs-on: ubuntu-latest
+    env:
+      FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: 🛸 Setup Fly
+        uses: superfly/flyctl-actions/setup-flyctl@master
+
+      - name: 🎈 Deploy to Fly (main)
+        if: github.ref == 'refs/heads/main'
+        # @ < ---- SEE BELOW ----> @ #
+        # change to `flyctl deploy -a my-app-name --remote-only`
+        # to deploy to separate staging environment
+        run: |
+          flyctl deploy -c DEPT_DASH_PROJECT_NAME --remote-only
+
+      # @dash-remove-start staging
+      - name: 🎈 Deploy to Fly (staging)
+        if: github.ref == 'refs/heads/staging'
+        # @ < ---- SEE BELOW ----> @ #
+        # change to `flyctl deploy -a my-staging-app-name --remote-only`
+        # to deploy to separate staging environment
+        run: flyctl deploy --remote-only
+      # @dash-remove-end
+
+      # @dash-remove-start production
+      - name: 🎈 Deploy to Fly (production)
+        if: github.ref == 'refs/heads/production'
+        # @ < ---- SEE BELOW ----> @ #
+        # change to `flyctl deploy -a my-production-app-name --remote-only`
+        # to deploy to a separate production environment
+        run: flyctl deploy --remote-only
+      # @dash-remove-end

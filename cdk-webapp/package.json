@@ -1,0 +1,56 @@
+{
+  "name": "@deptdash/cdk-webapp",
+  "version": "0.2.7",
+  "license": "UNLICENSED",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "tsup-node --watch",
+    "build": "tsup-node --dts",
+    "prepare": "tsup-node --dts",
+    "cdk": "cdk"
+  },
+  "tsup": {
+    "entry": [
+      "src/index.ts",
+      "src/tunnel-db.ts",
+      "src/cli.ts"
+    ],
+    "clean": true,
+    "minify": false
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "author": "Brian Schiller",
+  "module": "dist/index.js",
+  "devDependencies": {
+    "@types/node": "^18.13.0",
+    "aws-cdk": "2.64.0",
+    "tslib": "^2.5.0",
+    "tsup": "^6.6.0",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "@bgschiller/empty-promise": "^0.1.1",
+    "aws-cdk-lib": "2.80.0",
+    "cmd-ts": "^0.12.0",
+    "constructs": "^10.1.246",
+    "empty-promise": "^1.2.0",
+    "esbuild": "^0.17.7"
+  },
+  "bin": "dist/cli.js",
+  "optionalDependencies": {
+    "fsevents": "^2.3.2"
+  }
+}

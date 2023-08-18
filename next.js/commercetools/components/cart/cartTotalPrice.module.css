@@ -1,0 +1,21 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 1rem;
+}
+
+.colSpan1 {
+  grid-column: span 1 / span 1;
+}
+
+.textRight {
+  text-align: right;
+}
+
+.textTitleSm {
+  font-size: 1rem;
+}
+
+.fontBold {
+  font-weight: bold;
+}

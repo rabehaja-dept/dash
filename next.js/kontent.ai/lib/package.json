@@ -1,0 +1,17 @@
+{
+  "name": "kontent.ai",
+  "version": "1.0.0",
+  "description": "Kontent.ai Strategy",
+  "main": "index.js",
+  "scripts": {
+    "generate-typedefs": "kontent-generate --outputDir=../../@types/generated/kontent.ai --projectId=$KONTENT_AI_PROJECT_ID --apiKey=$KONTENT_AI_MANAGEMENT_API_KEY --isEnterpriseSubscription=false",
+    "export-project": "kbm --action=backup --apiKey=$KONTENT_AI_MANAGEMENT_API_KEY --projectId=$KONTENT_AI_PROJECT_ID --zipFilename=kontent.ai-export",
+    "import-project": "kbm --action=restore --zipFilename=kontent.ai-export.zip --apiKey=$KONTENT_AI_MANAGEMENT_API_KEY --projectId=$KONTENT_AI_PROJECT_ID"
+  },
+  "author": "DEPT™",
+  "license": "ISC",
+  "devDependencies": {
+    "@kontent-ai/backup-manager": "^4.1.0",
+    "@kontent-ai/model-generator": "^5.10.0"
+  }
+}

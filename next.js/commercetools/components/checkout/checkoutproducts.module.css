@@ -1,0 +1,63 @@
+/* checkoutproducts.module.css */
+.container {
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.productDetails {
+  display: flex;
+  align-items: center;
+}
+
+.productImage {
+  position: relative;
+}
+
+.imageStyle {
+  width: 64px;
+  height: 64px;
+  border: 1px solid #e5e7eb;
+  object-fit: cover;
+}
+
+.quantity {
+  position: absolute;
+  right: -0.5rem;
+  top: -0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: #71717a;
+  color: white;
+  padding: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.details {
+  margin-left: 1rem;
+}
+
+.productName {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.attributeValue {
+  font-size: 0.75rem;
+  color: #71717a;
+}
+
+.cartTotalPriceContainer {
+  text-align: right;
+}
+
+@media (min-width: 768px) {
+  .cartTotalPriceContainer {
+    width: 75%; /* w-3/4 */
+  }
+}

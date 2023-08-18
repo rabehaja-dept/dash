@@ -1,0 +1,153 @@
+/**
+ * This file is an example of a modular typography system
+ * if you wanted to implement it using tailwind
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /**
+    * Fonts use a modular scale based on a root font size.
+    * This is used to scale the font size of the base font.
+    * See more here: https://www.modularscale.com/
+    * to update the font sizing, simply change the base values
+    */
+  --base-font-size: 16px;
+  --base-line-height: 24px;
+  --ratio: 1.25;
+}
+
+@layer base {
+  /* custom default styling based on our design system */
+  @screen xs {
+    .display {
+      font-size: calc(var(--base-font-size) * 3);
+      line-height: calc(var(--base-line-height) * 3);
+    }
+    .display-body {
+      font-size: calc(var(--base-font-size) * 0.75);
+      line-height: calc(var(--base-line-height) * 0.75);
+    }
+    h1 {
+      font-size: calc(var(--base-font-size) * 2.25);
+      line-height: calc(var(--base-line-height) * 2.25);
+      font-weight: 300;
+    }
+    h2 {
+      font-size: calc(var(--base-font-size) * 1.75);
+      line-height: calc(var(--base-line-height) * 1.75);
+      font-weight: 400;
+    }
+    h3 {
+      font-size: calc(var(--base-font-size) * 1.25);
+      line-height: calc(var(--base-line-height) * 1.25);
+      font-weight: 300;
+    }
+    h4 {
+      font-size: calc(var(--base-font-size) * 1);
+      line-height: calc(var(--base-line-height) * 1);
+      font-weight: 700;
+    }
+    h5 {
+      font-size: calc(var(--base-font-size) * 0.75);
+      line-height: calc(var(--base-line-height) * 0.75);
+      font-weight: 400;
+    }
+    .body {
+      font-size: calc(var(--base-font-size) * 0.75);
+      line-height: calc(var(--base-line-height) * 0.75);
+    }
+    .caption {
+      font-size: calc(var(--base-font-size) * 0.5);
+      line-height: calc(var(--base-line-height) * 0.5);
+    }
+  }
+  @screen md {
+    .display {
+      font-size: calc(var(--base-font-size) * 3.5);
+      line-height: calc(var(--base-line-height) * 3.5);
+    }
+    .display-body {
+      font-size: calc(var(--base-font-size) * 0.75);
+      line-height: calc(var(--base-line-height) * 0.75);
+    }
+    h1 {
+      font-size: calc(var(--base-font-size) * 2.5);
+      line-height: calc(var(--base-line-height) * 2.5);
+      font-weight: 300;
+    }
+    h2 {
+      font-size: calc(var(--base-font-size) * 2);
+      line-height: calc(var(--base-line-height) * 2);
+      font-weight: 400;
+    }
+    h3 {
+      font-size: calc(var(--base-font-size) * 1.5);
+      line-height: calc(var(--base-line-height) * 1.5);
+      font-weight: 300;
+    }
+    h4 {
+      font-size: calc(var(--base-font-size) * 1);
+      line-height: calc(var(--base-line-height) * 1);
+      font-weight: 700;
+    }
+    h5 {
+      font-size: calc(var(--base-font-size) * 0.75);
+      line-height: calc(var(--base-line-height) * 0.75);
+      font-weight: 400;
+    }
+    .body {
+      font-size: calc(var(--base-font-size) * 1);
+      line-height: calc(var(--base-line-height) * 1);
+    }
+    .caption {
+      font-size: calc(var(--base-font-size) * 0.75);
+      line-height: calc(var(--base-line-height) * 0.75);
+    }
+  }
+  @screen lg {
+    .display {
+      font-size: calc(var(--base-font-size) * 4);
+      line-height: calc(var(--base-line-height) * 4);
+    }
+    .display-body {
+      font-size: calc(var(--base-font-size) * 1.25);
+      line-height: calc(var(--base-line-height) * 1.25);
+    }
+    h1 {
+      font-size: calc(var(--base-font-size) * 3);
+      line-height: calc(var(--base-line-height) * 3);
+      font-weight: 300;
+    }
+    h2 {
+      font-size: calc(var(--base-font-size) * 2.5);
+      line-height: calc(var(--base-line-height) * 2.5);
+      font-weight: 400;
+    }
+    h3 {
+      font-size: calc(var(--base-font-size) * 2);
+      line-height: calc(var(--base-line-height) * 2);
+      font-weight: 300;
+    }
+    h4 {
+      font-size: calc(var(--base-font-size) * 1.5);
+      line-height: calc(var(--base-line-height) * 1.5);
+      font-weight: 700;
+    }
+    h5 {
+      font-size: calc(var(--base-font-size) * 1.25);
+      line-height: calc(var(--base-line-height) * 1.25);
+      font-weight: 400;
+    }
+    .body {
+      font-size: calc(var(--base-font-size) * 1);
+      line-height: calc(var(--base-line-height) * 1);
+    }
+    .caption {
+      font-size: calc(var(--base-font-size) * 0.75);
+      line-height: calc(var(--base-line-height) * 0.75);
+    }
+  }
+}

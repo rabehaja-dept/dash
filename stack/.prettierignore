@@ -1,0 +1,27 @@
+node_modules
+CODEOWNERS
+
+/build
+/public/build
+.env
+
+/postgres-data
+
+tailwind.css
+
+storybook-static
+
+# @dash-remove-next-line contentful
+/contentful/migrations
+/contentful/lib
+
+# @dash-remove-next-line strapi
+/strapi/.cache
+# @dash-remove-next-line strapi
+/strapi/build
+
+# Don't format generated types
+**/@types/generated
+/strapi/.*
+
+.next

@@ -1,0 +1,88 @@
+/*
+  This is an example of a css module.
+  See `index.tsx` for usage and/or feel free
+  to delete/modify this file
+*/
+
+.title {
+  margin: 0;
+  line-height: 1.15;
+  font-size: 4rem;
+}
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.intro {
+  grid-column: span 4;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1rem;
+  padding: 0 3rem 3rem;
+}
+
+.container {
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  --borderWidth: 3px;
+  --borderRadius: 12px;
+  background: white;
+  position: relative;
+  border-radius: var(--borderRadius);
+}
+
+.code {
+  padding: 0.33rem;
+  background-color: #eee;
+  border-radius: 0.5rem;
+  margin: 0.25rem;
+  font-weight: bold;
+}
+
+.disclaimer {
+  margin-bottom: 100px;
+}
+
+/* fun border animation :D */
+.container:hover:after {
+  content: "";
+  position: absolute;
+  top: calc(-1 * var(--borderWidth));
+  left: calc(-1 * var(--borderWidth));
+  height: calc(100% + var(--borderWidth) * 2);
+  width: calc(100% + var(--borderWidth) * 2);
+  background: linear-gradient(
+    60deg,
+    #f79533,
+    #f37055,
+    #ef4e7b,
+    #a166ab,
+    #5073b8,
+    #1098ad,
+    #07b39b,
+    #6fba82
+  );
+  border-radius: calc(1.2 * var(--borderRadius));
+  z-index: -1;
+  animation: gradient 2.5s alternate-reverse infinite;
+  background-size: 300% 300%;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

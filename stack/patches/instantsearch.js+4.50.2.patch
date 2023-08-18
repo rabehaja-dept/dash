@@ -1,0 +1,32 @@
+diff --git a/node_modules/instantsearch.js/cjs/lib/stateMappings/simple.js b/node_modules/instantsearch.js/cjs/lib/stateMappings/simple.js
+index e36513f..042a6fa 100644
+--- a/node_modules/instantsearch.js/cjs/lib/stateMappings/simple.js
++++ b/node_modules/instantsearch.js/cjs/lib/stateMappings/simple.js
+@@ -14,6 +14,11 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
+ function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+ function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+ function getIndexStateWithoutConfigure(uiState) {
++  // If `history.state` (which gets passed down to `uiState` here) has a key with a null value (which seems to happen with `usr: null` sometimes), then the `configure = uiState.configure` line below will throw an error.
++  // We work around this Algolia bug by making `uiState` an empty object so the rest of the function doesn't break.
++  if (!uiState) {
++    uiState = {};
++  }
+   var configure = uiState.configure,
+     trackedUiState = _objectWithoutProperties(uiState, _excluded);
+   return trackedUiState;
+diff --git a/node_modules/instantsearch.js/es/lib/stateMappings/simple.js b/node_modules/instantsearch.js/es/lib/stateMappings/simple.js
+index c3ff853..ab22038 100644
+--- a/node_modules/instantsearch.js/es/lib/stateMappings/simple.js
++++ b/node_modules/instantsearch.js/es/lib/stateMappings/simple.js
+@@ -8,6 +8,11 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
+ function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+ function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+ function getIndexStateWithoutConfigure(uiState) {
++  // If `history.state` (which gets passed down to `uiState` here) has a key with a null value (which seems to happen with `usr: null` sometimes), then the `configure = uiState.configure` line below will throw an error.
++  // We work around this Algolia bug by making `uiState` an empty object so the rest of the function doesn't break.
++  if (!uiState) {
++    uiState = {};
++  }
+   var configure = uiState.configure,
+     trackedUiState = _objectWithoutProperties(uiState, _excluded);
+   return trackedUiState;

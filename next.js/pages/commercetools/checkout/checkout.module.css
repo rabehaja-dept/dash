@@ -1,0 +1,422 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0.5rem;
+}
+
+.marginTop {
+  margin-top: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .marginTop {
+    margin-top: 2rem;
+  }
+}
+
+.title {
+  margin-bottom: 1rem;
+  white-space: nowrap;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.linkContainer {
+  margin-left: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-size: 0.75rem;
+}
+
+/* form */
+
+.formInputContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.formLabel {
+  margin-bottom: 0.25rem;
+  margin-left: 0.25rem;
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #18181b;
+}
+
+.textAlertError {
+  color: #e34949;
+}
+
+.formInput {
+  display: block;
+  width: 100%;
+  border-color: #e4e4e7;
+  border-radius: 0px;
+  border-width: 1px;
+}
+
+.formInput:focus {
+  outline: none;
+  border-color: #18181b;
+  box-shadow: 0 0 0 0.125rem #18181b;
+}
+
+.formInput::placeholder {
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: #ffffff;
+}
+
+.errorContainer {
+  display: flex;
+  align-items: center;
+  padding: 0.25rem;
+  font-size: 0.75rem;
+  color: #18181b;
+}
+
+.iconAlertError {
+  margin-right: 0.25rem;
+  height: 1rem;
+  color: #e34949;
+}
+
+.helperTextContainer {
+  display: flex;
+  align-items: center;
+  padding: 0.25rem;
+  font-size: 0.75rem;
+  color: #bfbfbf;
+}
+
+.formInputActive {
+  border-color: #18181b;
+  box-shadow: 0 0 0 0.125rem #18181b;
+}
+
+.formInputError {
+  border-color: #e34949;
+}
+
+.formInputBase {
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+  padding: 0.625rem 0.5rem;
+  text-align: left;
+  border: 1px solid #e4e4e7;
+  border-radius: 0px;
+}
+
+.formInputFocusRing {
+  outline: none;
+  box-shadow: 0 0 0 1px #18181b;
+}
+
+.formInputSmallText {
+  font-size: 0.875rem;
+}
+
+.focusBorderActive:focus {
+  border-color: #18181b;
+}
+
+.roundedInput {
+  border-radius: 0px;
+}
+
+.borderWeak {
+  border-color: #e4e4e7;
+}
+
+.focusRingBorderTargeted:focus {
+  outline: none;
+  box-shadow: 0 0 0 1px #18181b;
+}
+
+.relative {
+  position: relative;
+}
+
+.cursorPointer {
+  cursor: pointer;
+}
+
+.py25 {
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+}
+
+.px2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.pr10 {
+  padding-right: 2.5rem;
+}
+
+.textLeft {
+  text-align: left;
+}
+
+.focusOutlineNone:focus {
+  outline: none;
+}
+
+.focusRing1:focus {
+  box-shadow: 0 0 0 1px #18181b;
+}
+
+.textSm {
+  font-size: 0.875rem;
+}
+
+.borderAlertError {
+  border-color: #e34949;
+}
+
+.flex {
+  display: flex;
+}
+
+.itemsCenter {
+  align-items: center;
+}
+
+.block {
+  display: block;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.textSm {
+  font-size: 0.875rem;
+}
+
+.textTextWeak {
+  color: #bfbfbf;
+}
+
+.fontLight {
+  font-weight: 300;
+}
+
+.pointerEventsNone {
+  pointer-events: none;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.insetY0 {
+  top: 0;
+  bottom: 0;
+}
+
+.right0 {
+  right: 0;
+}
+
+.shippingAddressContainer {
+  margin-top: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .shippingAddressContainer {
+    margin-top: 2rem;
+  }
+}
+
+.shippingAddressTitle {
+  margin-bottom: 1rem;
+  white-space: nowrap;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.shippingStreet {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.25rem;
+}
+
+.shippingStreetNumber {
+  grid-column: span 3 / auto;
+}
+
+@media (min-width: 1024px) {
+  .shippingStreetNumber {
+    grid-column: span 1 / auto;
+  }
+}
+
+.shippingStreetName {
+  grid-column: span 3 / auto;
+}
+
+@media (min-width: 1024px) {
+  .shippingStreetName {
+    grid-column: span 2 / auto;
+  }
+}
+
+.ml3 {
+  margin-left: 0.75rem;
+}
+
+.pr2 {
+  padding-right: 0.5rem;
+}
+
+.cursorPointer {
+  cursor: pointer;
+}
+
+.rotate180 {
+  transform: rotate(180deg);
+}
+
+.textText {
+  color: #18181b;
+}
+
+.h5 {
+  height: 1.25rem;
+}
+
+.w5 {
+  width: 1.25rem;
+}
+
+.transitionAll {
+  transition: all 0.3s ease;
+}
+
+.duration300 {
+  transition-duration: 300ms;
+}
+
+.roundedInput {
+  border-radius: 0px;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.z10 {
+  z-index: 10;
+}
+
+.maxH56 {
+  max-height: 14rem;
+}
+
+.wFull {
+  width: 100%;
+}
+
+.overflowAuto {
+  overflow: auto;
+}
+
+.bgWhite {
+  background-color: #ffffff;
+}
+
+.textBase {
+  font-size: 1rem;
+}
+
+.shadowLg {
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0px 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.ring1 {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05) inset;
+}
+
+.ringBlack {
+  box-shadow: 0 0 0 1px black inset;
+}
+
+.ringOpacity5 {
+  --ring-opacity: 0.05;
+}
+
+.bgPrimary {
+  background-color: #6366f1;
+}
+
+.textTextLight {
+  color: #f9fafb;
+}
+
+.textText {
+  color: #18181b;
+}
+
+.cursorPointer {
+  cursor: pointer;
+}
+
+.py2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.pr9 {
+  padding-right: 2.25rem;
+}
+
+.ml3 {
+  margin-left: 0.75rem;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.textWhite {
+  color: #ffffff;
+}
+
+.textPrimary {
+  color: #6366f1;
+}
+
+.pr4 {
+  padding-right: 1rem;
+}
+
+.fontNormal {
+  font-weight: 400;
+}
+
+.fontSemiBold {
+  font-weight: 600;
+}
+
+.button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.5s;
+  margin-top: 1rem;
+  margin-left: auto;
+  display: block;
+}

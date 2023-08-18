@@ -1,0 +1,410 @@
+name: Build, Test, and Deploy
+concurrency:
+  group: ${{ github.workflow }}-test-${{ github.ref }}
+  cancel-in-progress: true
+on:
+  push:
+    branches:
+      - "*"
+env:
+  PUBLICLY_AVAILABLE_ORIGIN: http://localhost:3000
+  # @dash-remove-start db
+  DATABASE_URL: postgresql://postgres:postgres@localhost:5432/dash
+  # @dash-remove-end
+  SESSION_SECRET: secret
+  # @dash-remove-start contentful
+  CONTENTFUL_ENV_ID: "master"
+  CONTENTFUL_SPACE_ID: "${{ secrets.CONTENTFUL_SPACE_ID }}"
+  CONTENTFUL_PREVIEW_ACCESS_TOKEN: "${{ secrets.CONTENTFUL_PREVIEW_ACCESS_TOKEN }}"
+  CONTENTFUL_MANAGEMENT_ACCESS_TOKEN: "${{ secrets.CONTENTFUL_MANAGEMENT_ACCESS_TOKEN }}"
+  # @dash-remove-end
+  # @dash-remove-start strapi
+  # This is an API token generated using the fake `tokensalt` salt in Strapi's env. Since the salt is non-secret, this key isn't secret either, and is safe to commit. Just make sure to use a real salt in production.
+  STRAPI_API_TOKEN: de7cc87cb84769c9f2f540b14a351952f0658c5f2a9978cddc9f8252098795fde82685649b13d72cf32197e8965062318b29a8fd06c2ffe9033faab9037bccba0d63aea7273f14bca07376e13dadd7e0757b66c365b2fa138a62d839a53be09da12dcccff09c21ec51025c916832e664b4ea0fe4cd34469f0f6bfd6ee93c9bb3
+  STRAPI_URL: http://localhost:1337
+  # @dash-remove-end
+  # @dash-remove-start kontent.ai
+  # Kontent.ai
+  KONTENT_AI_MANAGEMENT_API_KEY: ${{ secrets.KONTENT_AI_MANAGEMENT_API_KEY }}
+  KONTENT_AI_PROJECT_ID: ${{ secrets.KONTENT_AI_PROJECT_ID }}
+  KONTENT_AI_DELIVERY_API_KEY: ${{ secrets.KONTENT_AI_DELIVERY_API_KEY }}
+  KONTENT_AI_PREVIEW_API_KEY: ${{ secrets.KONTENT_AI_PREVIEW_API_KEY }}
+  # @dash-remove-end
+  # @dash-remove-start sanity
+  SANITY_STUDIO_PROJECT_ID: ${{ secrets.SANITY_STUDIO_PROJECT_ID }}
+  SANITY_STUDIO_DATASET: ${{ secrets.SANITY_STUDIO_DATASET }}
+  # @dash-remove-end
+  # @dash-remove-start contentstack
+  CONTENTSTACK_API_KEY: ${{ secrets.CONTENTSTACK_API_KEY }}
+  CONTENTSTACK_DELIVERY_TOKEN: ${{ secrets.CONTENTSTACK_DELIVERY_TOKEN }}
+  CONTENTSTACK_ENVIRONMENT: ${{ secrets.CONTENTSTACK_ENVIRONMENT }}
+  # @dash-remove-end
+  # @dash-remove-start optimizely
+  OPTIMIZELY_SDK_KEY: ${{ secrets.OPTIMIZELY_SDK_KEY }}
+  # @dash-remove-end
+  # @dash-remove-start commercetools
+  COMMERCETOOLS_PROJECT_KEY: "${{ secrets.COMMERCETOOLS_PROJECT_KEY }}"
+  COMMERCETOOLS_CLIENT_ID: "${{ secrets.COMMERCETOOLS_CLIENT_ID }}"
+  COMMERCETOOLS_SECRET: "${{ secrets.COMMERCETOOLS_SECRET }}"
+  COMMERCETOOLS_SCOPES: "${{ secrets.COMMERCETOOLS_SCOPES }}"
+  COMMERCETOOLS_API_URL: "${{ secrets.COMMERCETOOLS_API_URL }}"
+  COMMERCETOOLS_AUTH_URL: "${{ secrets.COMMERCETOOLS_AUTH_URL }}"
+  COMMERCETOOLS_WEB_CLIENT_ID: "${{ secrets.COMMERCETOOLS_WEB_CLIENT_ID }}"
+  COMMERCETOOLS_WEB_SECRET: "${{ secrets.COMMERCETOOLS_WEB_SECRET }}"
+  COMMERCETOOLS_WEB_SCOPES: "${{ secrets.COMMERCETOOLS_WEB_SCOPES }}"
+  COMMERCETOOLS_HTTP_EXTENSION_SECRET: "${{ secrets.COMMERCETOOLS_HTTP_EXTENSION_SECRET }}"
+  # @dash-remove-end
+  # @dash-remove sendgrid
+  SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+  SENDGRID_FROM_EMAIL: ${{ secrets.SENDGRID_FROM_EMAIL }}
+  # @dash-remove-end
+  # @dash-remove-start stripe
+  STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }} # @dash-remove stripe
+  # @dash-remove-end
+
+  # @dash-remove-start adyen
+  ADYEN_API_KEY: "${{ secrets.ADYEN_API_KEY }}"
+  ADYEN_MERCHANT_ACCOUNT: "${{ secrets.ADYEN_MERCHANT_ACCOUNT }}"
+  ADYEN_ENVIRONMENT: "${{ secrets.ADYEN_ENVIRONMENT }}"
+  ADYEN_BASE_URL: "${{ secrets.ADYEN_BASE_URL }}"
+  ADYEN_LIVE_ENDPOINT_URL_PREFIX: "${{ secrets.ADYEN_LIVE_ENDPOINT_URL_PREFIX }}"
+  ADYEN_CLIENT_KEY: "${{ secrets.ADYEN_CLIENT_KEY }}"
+  # @dash-remove-end
+
+jobs:
+  lint:
+    name: ⬣ ESLint
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ Checkout repository
+        uses: actions/checkout@v3
+
+      - name: ⎔ Setup node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: "npm"
+
+      - name: 📥 Download dependencies
+        run: |
+          npm install
+
+      - name: 🔬 Lint
+        run: npm run lint
+
+  typecheck:
+    name: ʦ TypeScript
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ Checkout repository
+        uses: actions/checkout@v3
+
+      - name: ⎔ Setup node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: "npm"
+
+      - name: 📥 Download dependencies
+        run: |
+          npm install
+
+      # @dash-remove-start strapi
+      - name: 📥 Download Strapi dependencies
+        run: |
+          npm install --prefix ./strapi
+      # @dash-remove-end
+      - name: 🔎 Run a type check
+        run: npm run typecheck --if-present
+
+  unit-tests:
+    name: ⚡ Vitest
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ Checkout repository
+        uses: actions/checkout@v3
+
+      - name: ⎔ Setup node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: "npm"
+
+      - name: 📥 Download dependencies
+        run: |
+          npm install
+
+      - name: ⚡ Run vitest unit tests
+        run: npm run test -- --coverage
+
+      - name: ⚡ Run vitest integration tests
+        run: npm run test:integration
+
+  browser-tests:
+    name: 🎭 Browser Tests
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: postgres
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          # Maps tcp port 5432 on service container to the host
+          - 5432:5432
+    env:
+      DEBUG: pw:webserver
+      # @dash-remove-start commercetools
+      COMMERCETOOLS_PROJECT_KEY: "${{ secrets.COMMERCETOOLS_PROJECT_KEY }}"
+      COMMERCETOOLS_CLIENT_ID: "${{ secrets.COMMERCETOOLS_CLIENT_ID }}"
+      COMMERCETOOLS_SECRET: "${{ secrets.COMMERCETOOLS_SECRET }}"
+      COMMERCETOOLS_SCOPES: "${{ secrets.COMMERCETOOLS_SCOPES }}"
+      COMMERCETOOLS_API_URL: "${{ secrets.COMMERCETOOLS_API_URL }}"
+      COMMERCETOOLS_AUTH_URL: "${{ secrets.COMMERCETOOLS_AUTH_URL }}"
+      COMMERCETOOLS_WEB_CLIENT_ID: ${{ secrets.COMMERCETOOLS_WEB_CLIENT_ID }}
+      COMMERCETOOLS_WEB_SECRET: "${{ secrets.COMMERCETOOLS_WEB_SECRET }}"
+      COMMERCETOOLS_WEB_SCOPES: ${{ secrets.COMMERCETOOLS_WEB_SCOPES }}
+      COMMERCETOOLS_HTTP_EXTENSION_SECRET: ${{ secrets.COMMERCETOOLS_HTTP_EXTENSION_SECRET }}
+      # @dash-remove-end
+    steps:
+      - name: ⬇️ Checkout repository
+        uses: actions/checkout@v3
+
+      - name: ⎔ Setup node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: "npm"
+
+      - name: 📥 Download dependencies
+        run: |
+          npm install
+
+      # @dash-remove-start contentful
+      - name: 🕵 Inspect Environment
+        id: inspect-env
+        run: |
+          # get the potential environment name, either as the entire branch name, or as "<env_name>/other-part-of-branch-name"
+          POTENTIAL_ENV_NAME=$(echo ${{ github.head_ref }} | sed 's|/.*||g')
+          if curl \
+              --header "Authorization: Bearer $CONTENTFUL_MANAGEMENT_ACCESS_TOKEN" \
+              https://api.contentful.com/spaces/$CONTENTFUL_SPACE_ID/environments \
+              | jq -r  '.items | .[] | .sys.id' | grep -x $POTENTIAL_ENV_NAME; then
+            # if Contentful has an environment that exactly matches our potential environment name, then use that
+            CONTENTFUL_ENV_ID=$POTENTIAL_ENV_NAME
+          else
+            # otherwise, just use the master environment (presumably this branch isn't using Contentful migrations)
+            CONTENTFUL_ENV_ID=master
+          fi
+          echo "Selected Contentful environment: $CONTENTFUL_ENV_ID (POTENTIAL_ENV_NAME=$POTENTIAL_ENV_NAME)"
+          echo "{contentful-env}={$CONTENTFUL_ENV_ID}" >> $GITHUB_OUTPUT
+      # @dash-remove-end
+      # @dash-remove-start strapi
+      - name: 🏗 Set up Strapi
+        # also, log the databases after creation
+        run: |
+          npm install --prefix ./strapi
+          sudo apt-get install -y postgresql-client
+          psql -h localhost -U postgres -c 'CREATE DATABASE strapi;'
+          psql -h localhost -U postgres -c 'SELECT datname FROM pg_database;'
+        env:
+          # The default PostgreSQL port
+          POSTGRES_PORT: 5432
+          PGPASSWORD: postgres
+      - name: 📥 Download Strapi dependencies
+        run: |
+          npm install --prefix ./strapi
+      - name: ⚙️ Setup Strapi env
+        working-directory: strapi
+        run: |
+          cp .env.example .env
+      # @dash-remove-end
+      # @dash-remove-start db
+      - name: 🛠 Setup database
+        run: npx prisma migrate reset --force
+      # @dash-remove-end
+
+      - name: 🎭 Run Playwright tests
+        env:
+          DEBUG: pw:webserver
+          CONTENTFUL_ENV_ID: ${{ steps.inspect-env.outputs.contentful-env }} # @dash-remove contentful
+        run: |
+          npx playwright install --with-deps
+          npm run test:e2e
+
+  # @dash-remove-start storybook
+  storybook:
+    name: 📖 Test & deploy Storybook
+    needs: [typecheck, unit-tests]
+    runs-on: ubuntu-latest
+    # Change this to your desired branch name if necessary
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: ⤵️ Checkout repository
+        uses: actions/checkout@v3
+
+      - name: 📥 Download dependencies
+        run: |
+          npm install
+
+      - name: 📦 Install utilities
+        run: |
+          npm i -g concurrently wait-on http-server
+
+      - name: 📖 Build and run Storybook tests
+        run: |
+          concurrently -k -s first -n "SB,TEST" -c "magenta,blue" "npm run --prefix my-remix-app build --quiet && npm run --prefix my-remix-app start" "wait-on tcp:3000 && npm run --prefix my-remix-app storybook:test"
+
+      - name: 🦔 Upload to Percy if enabled
+        env:
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+        if: env.PERCY_TOKEN != null
+        run: |
+          npx @percy/cli snapshot storybook-static
+
+      - name: 🛳 Deploy to Github Pages
+        uses: JamesIves/github-pages-deploy-action@3.6.2
+        with:
+          branch: gh-pages
+          folder: storybook-static
+  # @dash-remove-end
+
+  lighthouse:
+    name: 💡 Run Lighthouse tests
+    runs-on: ubuntu-latest
+    # @dash-remove-start db
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: postgres
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          # Maps tcp port 5432 on service container to the host
+          - 5432:5432
+    # @dash-remove-end
+    env:
+      DEBUG: pw:webserver
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: "npm"
+          cache-dependency-path: package-lock.json
+      # @dash-remove-start contentful
+      - name: 🕵 Inspect Environment
+        id: inspect-env
+        run: |
+          # get the potential environment name, either as the entire branch name, or as "<env_name>/other-part-of-branch-name"
+          POTENTIAL_ENV_NAME=$(echo ${{ github.head_ref }} | sed 's|/.*||g')
+          if curl \
+              --header "Authorization: Bearer $CONTENTFUL_MANAGEMENT_ACCESS_TOKEN" \
+              https://api.contentful.com/spaces/$CONTENTFUL_SPACE_ID/environments \
+              | jq -r  '.items | .[] | .sys.id' | grep -x $POTENTIAL_ENV_NAME; then
+            # if Contentful has an environment that exactly matches our potential environment name, then use that
+            CONTENTFUL_ENV_ID=$POTENTIAL_ENV_NAME
+          else
+            # otherwise, just use the master environment (presumably this branch isn't using Contentful migrations)
+            CONTENTFUL_ENV_ID=master
+          fi
+          echo "Selected Contentful environment: $CONTENTFUL_ENV_ID (POTENTIAL_ENV_NAME=$POTENTIAL_ENV_NAME)"
+          echo "{contentful-env}={$CONTENTFUL_ENV_ID}" >> $GITHUB_OUTPUT
+      # @dash-remove-end
+      # @dash-remove-start strapi
+      - name: 🏗 Set up Strapi
+        # also, log the databases after creation
+        run: |
+          npm install --prefix ./strapi
+          sudo apt-get install -y postgresql-client
+          psql -h localhost -U postgres -c 'CREATE DATABASE strapi;'
+          psql -h localhost -U postgres -c 'SELECT datname FROM pg_database;'
+        env:
+          # The default PostgreSQL port
+          POSTGRES_PORT: 5432
+          PGPASSWORD: postgres
+      # @dash-remove-end
+
+      - name: 📦 Install dependencies and run build
+        working-directory: .
+        run: |
+          npm install
+          npm run build
+
+      - name: 📦 Install utilities
+        run: |
+          npm i -g wait-on
+
+      # @dash-remove-start db
+      - name: 🔧 Run setup script
+        working-directory: .
+        run: npm run setup
+      # @dash-remove-end
+
+      - name: 💡 Setup lighthouse tests
+        working-directory: .
+        # @dash-remove-start contentful
+        env:
+          CONTENTFUL_ENV_ID: ${{ steps.inspect-env.outputs.contentful-env }}
+        # @dash-remove-end
+        run: |
+          PORT=5005 npm run start:server & npx wait-on --timeout 5000 http://localhost:5005
+
+      - name: 🔦 Run Lighthouse on urls
+        uses: treosh/lighthouse-ci-action@v9
+        with:
+          urls: |
+            http://localhost:5005
+          configPath: ".lighthouserc.js"
+          uploadArtifacts: true
+
+      # @dash-remove-start contentful
+      - name: 🔦 Run Lighthouse on Contentful urls
+        uses: treosh/lighthouse-ci-action@v9
+        with:
+          urls: |
+            http://localhost:5005/contentful
+            http://localhost:5005/contentful/blog
+            http://localhost:5005/contentful/about-us
+          configPath: ".lighthouserc.js"
+          uploadArtifacts: true
+      # @dash-remove-end
+
+  # @dash-remove-start aws
+  aws_deploy:
+    name: 🚀 Deploy to AWS
+    needs: [lint, typecheck, browser-tests, unit-tests, lighthouse]
+    # Change this to your desired branch name(s) if necessary
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/staging' || github.ref == 'refs/heads/production'
+    uses: ./.github/workflows/aws_deploy.yml
+    secrets: inherit
+    with:
+      stage: ${{ github.event.workflow_run.head_branch }} | sed 's|refs/heads/||g'
+  # @dash-remove-end
+
+  # @dash-remove-start fly
+  fly_deploy:
+    name: 🚀 Deploy to Fly.io
+    needs: [lint, typecheck, browser-tests, unit-tests, lighthouse]
+    secrets: inherit
+    uses: ./.github/workflows/fly_deploy.yml
+  # @dash-remove-end
+
+  # @dash-remove-start vercel
+  vercel_deploy:
+    name: 🚀 Deploy to Vercel
+    # Change this to your desired branch name(s) if necessary
+    if: github.ref == 'refs/heads/main'
+    uses: ./.github/workflows/vercel_deploy.yml
+    secrets: inherit
+  # @dash-remove-end

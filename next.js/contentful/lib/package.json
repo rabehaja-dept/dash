@@ -1,0 +1,17 @@
+{
+  "name": "dash-contentful-migrations",
+  "version": "1.0.0",
+  "description": "Contentful Strategy",
+  "main": "index.js",
+  "scripts": {
+    "bootstrap": "mkdir -p ../../@types/generated/ && npx @deptdash/contentful-migrate bootstrap --write-typedefs ../../@types/generated/contentful.d.ts",
+    "generate-typedefs": "mkdir -p ../../@types/generated/ && npx @deptdash/contentful-migrate download --write-typedefs ../../@types/generated/contentful.d.ts",
+    "create": "npx @deptdash/contentful-migrate create",
+    "migrate": "npx @deptdash/contentful-migrate up"
+  },
+  "author": "DEPT™",
+  "license": "ISC",
+  "dependencies": {
+    "@deptdash/contentful-migrate": "^0.18.7"
+  }
+}

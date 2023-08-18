@@ -1,0 +1,49 @@
+.cartSection {
+  margin: 0 auto;
+  width: 80%;
+  max-width: 1200px;
+}
+
+.cartHeading {
+  text-align: center;
+  margin: 1em 0;
+}
+
+.cartTable {
+  width: 100%;
+  margin-bottom: 1em;
+  border-collapse: collapse;
+}
+
+.cartTable th,
+.cartTable td {
+  padding: 1em;
+  border: 1px solid #ddd;
+}
+
+.cartAside {
+  text-align: center;
+  margin-top: 1em;
+  padding: 1em;
+  border: 1px solid #ddd;
+}
+
+.cartTotal {
+  font-size: 1.2em;
+  margin-bottom: 0.5em;
+}
+
+.cartNote {
+  margin-bottom: 1em;
+}
+
+.button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.5s;
+}

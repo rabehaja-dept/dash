@@ -1,0 +1,17 @@
+{
+  "name": "commercetools",
+  "version": "1.0.0",
+  "description": "Commercetools & Adyen",
+  "main": "index.js",
+  "devDependencies": {
+    "ts-node": "10.9.1"
+  },
+  "scripts": {
+    "commercetools:setup": "ts-node index.ts"
+  },
+  "volta": {
+    "node": "16.19.1"
+  },
+  "author": "DEPT™",
+  "license": "ISC"
+}

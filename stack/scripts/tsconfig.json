@@ -1,0 +1,10 @@
+//basic tsconfig
+{
+  "compilerOptions": {
+    "target": "ES2019",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "lib": ["DOM", "DOM.Iterable", "ES2019"]
+  },
+  "include": ["**/*.ts"]
+}

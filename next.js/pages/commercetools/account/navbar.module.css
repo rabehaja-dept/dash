@@ -1,0 +1,37 @@
+.accountNavContainer {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  background: linear-gradient(to right, #f5a72f, #ffffff, #36ad91);
+  color: #000;
+}
+
+.accountNavLink {
+  font-family: "Source Code Pro";
+  color: #111827;
+  cursor: pointer;
+}
+
+.accountNavLinkActive {
+  color: #3576d1;
+}
+
+.accountNavButton {
+  font-family: "Source Code Pro";
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: #1f2937;
+}
+
+.linkContainer {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.linkContainer a:first-child {
+  margin-left: 20px;
+}

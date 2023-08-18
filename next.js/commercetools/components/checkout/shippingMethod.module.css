@@ -1,0 +1,43 @@
+.container {
+  border: 1px solid #d1d5db;
+}
+
+.flexItemsStart {
+  display: flex;
+  align-items: flex-start;
+  padding: 1rem;
+}
+
+.radioInput {
+  margin-right: 1rem;
+  margin-top: 0.25rem;
+  height: 1rem;
+  width: 1rem;
+  cursor: pointer;
+  color: #3b82f6;
+}
+
+.title {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.itemTitle {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.itemDescription {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #6b7280;
+}
+
+.label {
+  width: 100%;
+  cursor: pointer;
+}

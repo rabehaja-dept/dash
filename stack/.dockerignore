@@ -1,0 +1,9 @@
+**/node_modules
+**/*.log
+**/.DS_Store
+**/.envrc
+**/.env
+**/.cache
+**/public/build
+**/build
+cdk*

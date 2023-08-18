@@ -1,0 +1,38 @@
+.container {
+  margin-bottom: 2rem;
+  border: 1px solid #e5e7eb;
+  padding: 1rem;
+  font-weight: 400;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.label {
+  color: #9ca3af;
+}
+
+.labelMargin {
+  margin-right: 1rem;
+}
+
+.hr {
+  height: 1px;
+  background-color: #e5e7eb;
+}
+
+.address {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 1rem;
+}

@@ -1,0 +1,12 @@
+.addressContainer {
+  margin-bottom: 1rem; /* mb-4 */
+  overflow: hidden; /* overflow-hidden */
+}
+
+.addressText {
+  white-space: nowrap; /* truncate */
+  overflow: hidden; /* truncate */
+  text-overflow: ellipsis; /* text-ellipsis */
+  font-size: 0.875rem; /* text-body-sm */
+  color: #6b7280; /* text-text-weak */
+}

@@ -1,0 +1,19 @@
+.paymentForm {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #d2d6dc;
+  padding: 1rem;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.submitButton {
+  margin-top: 2rem;
+}
+
+.message {
+  margin-top: 1rem;
+}

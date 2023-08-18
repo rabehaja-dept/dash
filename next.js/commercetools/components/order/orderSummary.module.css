@@ -1,0 +1,85 @@
+.orderSummary {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.checkIcon {
+  height: 48px;
+  width: 48px;
+  color: #5115f7;
+}
+
+.orderInfo {
+  margin-top: 32px;
+  border: 1px solid #adadb8;
+}
+
+.mapContainer {
+  padding: 16px;
+}
+
+.title {
+  margin-bottom: 16px;
+  font-size: 20px;
+}
+
+.paragraph {
+  font-size: 14px;
+  color: #5f5f6d;
+}
+
+.button {
+  margin-top: 16px;
+}
+
+.orderContact {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin-top: 32px;
+  text-overflow: ellipsis;
+  border: 1px solid #adadb8;
+  padding: 16px;
+  font-weight: 400;
+}
+
+@media (min-width: 1024px) {
+  .orderContact {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.header {
+  margin-bottom: 16px;
+  font-size: 16px;
+}
+
+.subHeader {
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.text {
+  text-overflow: ellipsis;
+  font-size: 14px;
+  color: #5f5f6d;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 0.5rem;
+}
+
+@media (min-width: 1024px) {
+  .gridContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.mbOverflow {
+  margin-bottom: 1rem;
+  overflow: hidden;
+}

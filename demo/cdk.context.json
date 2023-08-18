@@ -1,0 +1,104 @@
+{
+  "availability-zones:account=320049641071:region=us-west-1": [
+    "us-west-1b",
+    "us-west-1c"
+  ],
+  "hosted-zone:account=320049641071:domainName=deptdxp.com:region=us-west-1": {
+    "Id": "/hostedzone/Z09995472BXO3DZVHM5XD",
+    "Name": "deptdxp.com."
+  },
+  "vpc-provider:account=320049641071:filter.isDefault=false:filter.tag:Name=DeptDash-demo-production/Vpc:region=us-west-1:returnAsymmetricSubnets=true": {
+    "vpcId": "vpc-0655062476980236f",
+    "vpcCidrBlock": "172.21.0.0/16",
+    "availabilityZones": [],
+    "subnetGroups": [
+      {
+        "name": "ingress",
+        "type": "Public",
+        "subnets": [
+          {
+            "subnetId": "subnet-007042125154757ae",
+            "cidr": "172.21.0.0/24",
+            "availabilityZone": "us-west-1b",
+            "routeTableId": "rtb-0a5068a128f9bbc3b"
+          },
+          {
+            "subnetId": "subnet-0865f4476a135dc41",
+            "cidr": "172.21.1.0/24",
+            "availabilityZone": "us-west-1c",
+            "routeTableId": "rtb-0585e7264f2f75094"
+          }
+        ]
+      },
+      {
+        "name": "rds",
+        "type": "Isolated",
+        "subnets": [
+          {
+            "subnetId": "subnet-0b34a26fb5d250716",
+            "cidr": "172.21.2.0/28",
+            "availabilityZone": "us-west-1b",
+            "routeTableId": "rtb-08b89de5d8128504d"
+          },
+          {
+            "subnetId": "subnet-09f44b18eb5d960fa",
+            "cidr": "172.21.2.16/28",
+            "availabilityZone": "us-west-1c",
+            "routeTableId": "rtb-016dd5732ed8733ea"
+          }
+        ]
+      }
+    ]
+  },
+  "security-group:account=320049641071:region=us-west-1:securityGroupName=BastionSecurityGroup:vpcId=vpc-0655062476980236f": {
+    "securityGroupId": "sg-01c2d9d2cec73cfc9",
+    "allowAllOutbound": false
+  },
+  "vpc-provider:account=320049641071:filter.isDefault=false:filter.tag:Name=DeptDash-demo/Vpc:region=us-west-1:returnAsymmetricSubnets=true": {
+    "vpcId": "vpc-04a5f1b3ef7aff9dc",
+    "vpcCidrBlock": "172.21.0.0/16",
+    "availabilityZones": [],
+    "subnetGroups": [
+      {
+        "name": "ingress",
+        "type": "Public",
+        "subnets": [
+          {
+            "subnetId": "subnet-0770dccad22f8d6c6",
+            "cidr": "172.21.0.0/24",
+            "availabilityZone": "us-west-1b",
+            "routeTableId": "rtb-0997691dfe375d67e"
+          },
+          {
+            "subnetId": "subnet-0baaa943430bc61e0",
+            "cidr": "172.21.1.0/24",
+            "availabilityZone": "us-west-1c",
+            "routeTableId": "rtb-05018882c3b434292"
+          }
+        ]
+      },
+      {
+        "name": "rds",
+        "type": "Isolated",
+        "subnets": [
+          {
+            "subnetId": "subnet-0a07c397523289d59",
+            "cidr": "172.21.2.0/28",
+            "availabilityZone": "us-west-1b",
+            "routeTableId": "rtb-0e8815f7d7a0c9996"
+          },
+          {
+            "subnetId": "subnet-06a51d3d018948c77",
+            "cidr": "172.21.2.16/28",
+            "availabilityZone": "us-west-1c",
+            "routeTableId": "rtb-041122fe659d364dc"
+          }
+        ]
+      }
+    ]
+  },
+  "security-group:account=320049641071:region=us-west-1:securityGroupName=BastionSecurityGroup:vpcId=vpc-04a5f1b3ef7aff9dc": {
+    "securityGroupId": "sg-0ba2b6805f6a3d733",
+    "allowAllOutbound": false
+  }
+}

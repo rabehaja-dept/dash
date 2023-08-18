@@ -1,0 +1,31 @@
+.methodContainer {
+  margin-top: 1rem;
+}
+
+.title {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.method {
+  display: flex;
+  align-items: center;
+  border: 1px solid #e5e7eb;
+  padding: 1.5rem;
+  cursor: pointer;
+}
+
+.methodInput {
+  height: 1rem;
+  width: 1rem;
+  cursor: pointer;
+  color: #2563eb;
+}
+
+.icon {
+  margin-left: 1rem;
+  margin-right: 0.5rem;
+  height: 1.5rem;
+  width: 1.5rem;
+}

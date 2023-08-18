@@ -1,0 +1,36 @@
+{
+  "name": "strapi",
+  "private": true,
+  "version": "0.1.0",
+  "description": "DEPT DASH™",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi",
+    "clean": "rm -r build .cache",
+    "generate-typedefs": "strapi ts:generate-types && cp schemas.d.ts ../app/@types/generated/strapi.d.ts"
+  },
+  "dependencies": {
+    "@strapi/plugin-i18n": "4.6.1",
+    "@strapi/plugin-users-permissions": "4.6.1",
+    "@strapi/provider-upload-aws-s3": "^4.10.5",
+    "@strapi/strapi": "4.6.1",
+    "better-sqlite3": "8.1.0",
+    "pg": "^8.9.0"
+  },
+  "author": {
+    "name": "DEPT Agency"
+  },
+  "strapi": {
+    "uuid": "db0446bd-89a9-401b-8930-7901b3240c72"
+  },
+  "engines": {
+    "node": ">=12.x.x <=16.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "babel-eslint": "^10.1.0"
+  }
+}

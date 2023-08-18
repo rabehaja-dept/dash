@@ -1,0 +1,140 @@
+# Configuration variables that are secret or are different on each environment are stored here
+# all other configuration variables are stored in app/config.ts
+export GLOBAL_CACHE_SECONDS=300 # 5 minutes
+# @dash-remove-next-line sentry
+export SENTRY_DSN=
+# @dash-remove-next-line gtags
+export GA_TRACKING_ID=
+# @dash-remove-next-line storybook
+export PERCY_TOKEN=
+
+# ERROR | WARN | INFO | DEBUG
+export LOG_LEVEL=WARN
+
+export BASIC_AUTH_ENTIRE_SITE=false
+export BASIC_AUTH_STORYBOOK=false
+export BASIC_AUTH_USERS="user1,password1|user2,password2"
+
+# @dash-remove-next-line db
+export DATABASE_URL="postgresql://postgres:postgres@localhost:5432/DEPT_DASH_PROJECT_NAME"
+export SESSION_SECRET="super-duper-s3cret"
+# Do not include a trailing slash
+export PUBLICLY_AVAILABLE_ORIGIN="http://localhost:3000"
+
+# @dash-remove-start contentful
+export CONTENTFUL_SPACE_ID=jcdjo56lmw8q
+export CONTENTFUL_PREVIEW_ACCESS_TOKEN=6Sovo60Z0rGOYvNmnr_pKBp5pXCKkJqRkUHODg4YXyA
+export CONTENTFUL_MANAGEMENT_ACCESS_TOKEN=
+export CONTENTFUL_ENV_ID=master
+# @dash-remove-end
+
+# @dash-remove-start commercetools
+export COMMERCETOOLS_PROJECT_KEY=dept-dash-accelerator
+export COMMERCETOOLS_API_URL=https://api.europe-west1.gcp.commercetools.com
+export COMMERCETOOLS_AUTH_URL=https://auth.europe-west1.gcp.commercetools.com
+export COMMERCETOOLS_CLIENT_ID=1mr0BKeUS6FTzseKvtsNJApM
+export COMMERCETOOLS_SECRET=2fxxSZRiCMyWFel97aeFaUWQTt7NeA93
+export COMMERCETOOLS_SCOPES="manage_project:dept-dash-accelerator manage_api_clients:dept-dash-accelerator view_audit_log:dept-dash-accelerator"
+
+export COMMERCETOOLS_WEB_CLIENT_ID=3t9abVzh8we6L1pWwjCv8UEN
+export COMMERCETOOLS_WEB_SECRET=Rp72kETXgAvaZK0KRy8mUqJ-0Iw0-ESJ
+export COMMERCETOOLS_WEB_SCOPES="manage_my_quote_requests:dept-dash-accelerator manage_my_shopping_lists:dept-dash-accelerator manage_my_payments:dept-dash-accelerator manage_my_orders:dept-dash-accelerator manage_my_quotes:dept-dash-accelerator manage_my_profile:dept-dash-accelerator view_published_products:dept-dash-accelerator create_anonymous_token:dept-dash-accelerator view_categories:dept-dash-accelerator manage_my_business_units:dept-dash-accelerator"
+
+export COMMERCETOOLS_HTTP_EXTENSION_SECRET="super-duper-s3cret"
+# @dash-remove-end
+
+# @dash-remove-start adyen
+export ADYEN_API_KEY="AQEwhmfxKoLOYxFBw0m/n3Q5qf3VbK59ObJJW2pDyGz5xzWNv2nSjee1JDtU2GzQK0w7EMFdWw2+5HzctViMSCJMYAc=-aTWhXjBETU3KTXGdD7/gwAGNGT9plsnPqlaO8MVUe6I=-q.(pwvcDa5gU;)+("
+export ADYEN_MERCHANT_ACCOUNT="DEPTAccount293ECOM"
+export ADYEN_ENVIRONMENT="TEST"
+export ADYEN_BASE_URL="https://checkout-test.adyen.com"
+export ADYEN_LIVE_ENDPOINT_URL_PREFIX=
+export ADYEN_CLIENT_KEY=test_FODFDBMQANHCNL2YJSR7VSZ5FUBPJ5SY
+# @dash-remove-end
+
+# @dash-remove-start algolia
+export ALGOLIA_ADMIN_KEY=
+# @dash-remove-end
+
+# @dash-remove-start strapi
+export STRAPI_URL=http://localhost:1337
+export STRAPI_API_TOKEN=de7cc87cb84769c9f2f540b14a351952f0658c5f2a9978cddc9f8252098795fde82685649b13d72cf32197e8965062318b29a8fd06c2ffe9033faab9037bccba0d63aea7273f14bca07376e13dadd7e0757b66c365b2fa138a62d839a53be09da12dcccff09c21ec51025c916832e664b4ea0fe4cd34469f0f6bfd6ee93c9bb3
+# @dash-remove-end
+
+# @dash-remove-start kontent.ai
+export KONTENT_AI_PROJECT_ID=942b001e-ccf5-00e6-fb5f-846ef4abd692
+export KONTENT_AI_DELIVERY_API_KEY=ew0KICAiYWxnIjogIkhTMjU2IiwNCiAgInR5cCI6ICJKV1QiDQp9.ew0KICAianRpIjogIjg3OTZlMDkwNGM0ZjQyY2Y4YzIxNTcwMDRhMGRmODliIiwNCiAgImlhdCI6ICIxNjc0MTU0MTUyIiwNCiAgImV4cCI6ICIxNzA1NjkwMTUyIiwNCiAgInZlciI6ICIxLjAuMCIsDQogICJwcm9qZWN0X2lkIjogIjk0MmIwMDFlY2NmNTAwZTZmYjVmODQ2ZWY0YWJkNjkyIiwNCiAgImF1ZCI6ICJkZWxpdmVyLmtlbnRpY29jbG91ZC5jb20iDQp9.R9pCxOq3Vr3cVr8Ys6-3ujZ8iS3jEWaF8H1N-BYcedU
+export KONTENT_AI_PREVIEW_API_KEY=ew0KICAiYWxnIjogIkhTMjU2IiwNCiAgInR5cCI6ICJKV1QiDQp9.ew0KICAianRpIjogIjNiODIzZjJhNzliYjQxZjRhYTRhM2U2YTM3ZDdhZjYzIiwNCiAgImlhdCI6ICIxNjc0MTUzOTg5IiwNCiAgImV4cCI6ICIxNzA1Njg5OTg5IiwNCiAgInZlciI6ICIxLjAuMCIsDQogICJwcm9qZWN0X2lkIjogIjk0MmIwMDFlY2NmNTAwZTZmYjVmODQ2ZWY0YWJkNjkyIiwNCiAgImF1ZCI6ICJwcmV2aWV3LmRlbGl2ZXIua2VudGljb2Nsb3VkLmNvbSINCn0.9oJbRjwG6Ln6Cwjjeh7H5Z-qPRjY7jBafu3-WV0yDBQ
+export KONTENT_AI_MANAGEMENT_API_KEY=
+# @dash-remove-end
+
+# @dash-remove-start optimizely
+export OPTIMIZELY_SDK_KEY=JcfRhK5uHgTHH5tMZS9c7
+# @dash-remove-end
+
+# @dash-remove-start aws
+export AWS_ACCESS_KEY_ID=
+export AWS_SECRET_ACCESS_KEY=
+export CDK_DEFAULT_REGION=
+export CDK_DEFAULT_ACCOUNT=
+export MAIN_DOMAIN_NAME=
+export MAIN_CDK_CERTIFICATE_VALIDATION=
+export MAIN_ROUTE53_HOSTED_ZONE_DOMAIN=
+export MAIN_CLOUDFRONT_CERTIFICATE_ARN=
+export MAIN_LOAD_BALANCER_CERTIFICATE_ARN=
+# @dash-remove-end
+
+# @dash-remove-start staging
+export STAGING_DOMAIN_NAME=
+export STAGING_CDK_CERTIFICATE_VALIDATION=
+export STAGING_ROUTE53_HOSTED_ZONE_DOMAIN=
+export STAGING_CLOUDFRONT_CERTIFICATE_ARN=
+export STAGING_LOAD_BALANCER_CERTIFICATE_ARN=
+# @dash-remove-end
+
+# @dash-remove-start production
+export PRODUCTION_DOMAIN_NAME=
+export PRODUCTION_CDK_CERTIFICATE_VALIDATION=
+export PRODUCTION_ROUTE53_HOSTED_ZONE_DOMAIN=
+export PRODUCTION_CLOUDFRONT_CERTIFICATE_ARN=
+export PRODUCTION_LOAD_BALANCER_CERTIFICATE_ARN=
+# @dash-remove-end
+
+# @dash-remove start strapi
+export STRAPI_AWS_ACCESS_KEY_ID=
+export STRAPI_AWS_SECRET_ACCESS_KEY=
+export STRAPI_AWS_REGION=
+export STRAPI_AWS_BUCKET_NAME=
+export STRAPI_APP_KEYS=key1,key2
+export STRAPI_API_TOKEN_SALT=tokensalt
+export STRAPI_ADMIN_JWT_SECRET=adminjwtsecret
+export STRAPI_JWT_SECRET=jwtsecret
+# @dash-remove-end
+# @dash-remove-start vercel
+export VERCEL_TOKEN=
+export VERCEL_ORG_ID=
+export VERCEL_PROJECT_ID=
+# @dash-remove-end
+# @dash-remove-start contentstack
+export CONTENTSTACK_API_KEY=blte960e66c12ddc3c7
+export CONTENTSTACK_DELIVERY_TOKEN=csf85328afb69d82ffd1ea0b0b
+export CONTENTSTACK_ENVIRONMENT=production
+# @dash-remove-end
+# @dash-remove-start cloudinary
+export CLOUDINARY_CLOUD_NAME=dept-dash
+# @dash-remove-end
+# @dash-remove-start sanity
+export SANITY_STUDIO_DATASET=production
+export SANITY_STUDIO_PROJECT_ID=qgtyaslm
+# @dash-remove-end
+
+# @dash-remove-start stripe
+export STRIPE_SECRET_KEY=sk_test_51MbPQ2Fli3kyams8nIu5K9oJ0AkeW224xbUSLTEq0K5QEy25ZKCl5YcXMtIoQbxW2ue3U4BmSmnQC6lcZuu2DNyj00qDDWy8qJ
+export STRIPE_WEBHOOK_SECRET=whsec_29a7e74273d50da622214c197f294d89f7df616b0a442d7bbce737efc7e7476a
+export STRIPE_API_VERSION="2022-11-15"
+# @dash-remove-end
+
+# @dash-remove-start sendgrid
+export SENDGRID_API_KEY=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
+export SENDGRID_FROM_EMAIL=dash@us.deptagency.com
+# @dash-remove-end

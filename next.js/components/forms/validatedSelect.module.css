@@ -1,0 +1,22 @@
+.select {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  border-color: #e4e4e7;
+  border-radius: 0px;
+  border-width: 1px;
+  background-color: #fff;
+  font-size: 1rem;
+  color: #333;
+  border-radius: 4px;
+  margin-top: 0.3rem;
+}
+
+.select:hover {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.select:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+}

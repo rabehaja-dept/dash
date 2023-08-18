@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@base {
+  p {
+    @apply text-body-md;
+  }
+}

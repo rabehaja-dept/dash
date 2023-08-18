@@ -1,0 +1,27 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  background-color: ghostwhite;
+}
+
+.linkContainer {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.linkContainer h3 {
+  margin: 0;
+}
+
+.accountContainer,
+.cartContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

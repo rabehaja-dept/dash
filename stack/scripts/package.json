@@ -1,0 +1,16 @@
+{
+  "name": "helper",
+  "description": "Helper to ask questions and gather information used after for configuration setups",
+  "authors": "author",
+  "version": "1.0.0",
+  "main": "main.ts",
+  "dependencies": {
+    "inquirer": "^8.2.5"
+  },
+  "devDependencies": {
+    "ts-node": "10.9.1"
+  },
+  "scripts": {
+    "start": "ts-node src/main.ts"
+  }
+}
